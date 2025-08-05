@@ -35,7 +35,7 @@ RUN set -ex \
     # install git extension
     jupyterlab-git==0.51.0 \
     # additional dependencies
-    "psycopg[binary]" langid \
+    psycopg[binary] langid \
     # install plotly extension
     plotly==5.24.1 \
     # install drawio and graphical extensions, not compatible with Jupyterlab 4.X yet
