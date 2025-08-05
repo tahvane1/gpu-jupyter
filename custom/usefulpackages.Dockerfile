@@ -4,7 +4,7 @@ USER root
 
 # Install useful packages and Graphviz
 RUN apt-get update \
- && apt-get -y install --torch-backend=cu126 --no-install-recommends htop apt-utils iputils-ping graphviz libgraphviz-dev openssh-client \
+ && apt-get -y install  --no-install-recommends htop apt-utils iputils-ping graphviz libgraphviz-dev openssh-client \
  && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 USER $NB_UID
@@ -58,6 +58,6 @@ RUN set -ex \
 #     pip install --no-build-isolation -e .  \
 #     && fix-permissions "${CONDA_DIR}" \
 #     && fix-permissions "/home/${NB_USER}"
-RUN pip install vllm --extra-index-url https://download.pytorch.org/whl/cu126
+RUN pip install vllm --extra-index-url https://download.pytorch.org/whl/cu128
 # Switch back to jovyan to avoid accidental container runs as root
 USER $NB_UID

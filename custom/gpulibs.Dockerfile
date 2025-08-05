@@ -52,7 +52,7 @@ RUN pip install --no-cache-dir nvidia-pyindex && \
 
 # Install cuda-nvcc with sepecific version, see here:
 # https://anaconda.org/nvidia/cuda-nvcc/labels
-RUN mamba install -c nvidia cuda-nvcc=12.6.85 -y && \
+RUN mamba install -c nvidia cuda-nvcc=12.8.93 -y && \
     mamba clean --all -f -y && \
     fix-permissions $CONDA_DIR && \
     fix-permissions /home/$NB_USER
