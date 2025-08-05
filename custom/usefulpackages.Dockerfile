@@ -58,6 +58,8 @@ RUN set -ex \
 #     pip install --no-build-isolation -e .  \
 #     && fix-permissions "${CONDA_DIR}" \
 #     && fix-permissions "/home/${NB_USER}"
-RUN pip install vllm --extra-index-url https://download.pytorch.org/whl/cu128
+RUN pip install vllm==0.8.5 --extra-index-url https://download.pytorch.org/whl/cu124 \
+ && fix-permissions "${CONDA_DIR}" \
+ && fix-permissions "/home/${NB_USER}"
 # Switch back to jovyan to avoid accidental container runs as root
 USER $NB_UID
