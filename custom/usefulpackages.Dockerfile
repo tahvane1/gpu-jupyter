@@ -34,6 +34,8 @@ RUN set -ex \
     jupyter_nbextensions_configurator==0.6.4 \
     # install git extension
     jupyterlab-git==0.51.0 \
+    # additional dependencies
+    "psycopg[binary]" langid \
     # install plotly extension
     plotly==5.24.1 \
     # install drawio and graphical extensions, not compatible with Jupyterlab 4.X yet
@@ -47,5 +49,11 @@ RUN set -ex \
     && fix-permissions "${CONDA_DIR}" \
     && fix-permissions "/home/${NB_USER}"
 
+# build vllm
+RUN git clone https://github.com/vllm-project/vllm.git && cd vllm && python use_existing_torch.py && \
+    pip install -r requirements/build.txt && \
+    pip install --no-build-isolation -e . && \
+    && fix-permissions "${CONDA_DIR}" \
+    && fix-permissions "/home/${NB_USER}"
 # Switch back to jovyan to avoid accidental container runs as root
 USER $NB_UID
